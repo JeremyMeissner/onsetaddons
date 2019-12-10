@@ -5,9 +5,6 @@ import '../App.css';
 import MainButton from './MainButton.js';
 
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
   Link
 } from "react-router-dom";
 

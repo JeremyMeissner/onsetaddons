@@ -32,6 +32,19 @@ h3 {
   font-size: 22px;
   margin: 0px;
 }
+h4 {
+  font-weight: 600;
+  font-size: 36px;
+  margin: 0px;
+  margin-top: 76px;
+}
+h5 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  color: #5E6C84;
+  margin: 18px 0px;
+}
 p {
   font-size: 18px;
   line-height: 27px;
@@ -102,16 +115,22 @@ p {
   transition: 200ms;
   cursor: pointer;
 }
-.MainButton span {
+.MainButton button {
+  font-family: 'Poppins', sans-serif;
+  padding: 0px;
+  margin: 0px;
   font-weight: 600;
   font-size: 16px;
   color: rgba(231, 94, 56, 1);
   transition: 200ms;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 .MainButton:hover {
   background-color: rgba(231, 94, 56, 1);
 }
-.MainButton:hover span {
+.MainButton:hover button {
   color: #ffffff;
 }
 .Carousel {
@@ -190,7 +209,7 @@ p {
 .Item:hover .MainButton {
   background-color: rgba(231, 94, 56, 1);
 }
-.Item:hover .MainButton span {
+.Item:hover .MainButton button {
   color: #ffffff;
 }
 .Footer {
@@ -269,4 +288,77 @@ p {
   height: 2px;
   background-color: #E75E38;
   border-radius: 6px 6px 0px 0px;
+}
+.ItemBig {
+  max-width: 1140px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+.ItemBig main {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+.ItemBig main > span {
+  font-size: 18px;
+  font-weight: normal;
+  color: #9A9A9A;
+  margin: 0px;
+  margin-bottom: 22px;
+}
+.ItemBig main img {
+  height: auto;
+  width: 100%;
+  margin-bottom: 24px;
+}
+.ItemBig main div {
+  margin-bottom: 64px;
+}
+.ItemBig aside {
+  margin-left: 32px;
+}
+.ItemBig aside > div {
+  border: 1px solid #E2E2E2;
+  box-sizing: border-box;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  padding: 20px 16px;
+}
+.ItemBig .price {
+  position: sticky;
+  top: 24px;
+}
+.ItemBig .price span {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 42px;
+  width: 100%;
+  background: #F9FAFD;
+  border-radius: 12px;
+  display: block;
+  text-align: left;
+  padding: 16px 20px;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+}
+.ItemBig .features {
+  text-align: left;
+  position: sticky;
+  top: 242px;
+}
+.ItemBig .features span {
+  font-weight: 500;
+  font-size: 16px;
+}
+.ItemBig .features ul {
+  padding-left: 20px;
+  margin: 0px;
+  margin-top: 8px;
+}
+.ItemBig .features ul li {
+  font-weight: normal;
+  font-size: 16px;
+  margin: 8px 0px;
+  color: #5E6C84;
 }

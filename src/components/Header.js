@@ -4,14 +4,14 @@ import '../App.css';
 import CartButton from './CartButton.js';
 import MainButton from './MainButton.js';
 
+import { useAuth0 } from "../react-auth0-spa.js";
+
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
   Link
 } from "react-router-dom";
 
 function Header() {
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0;
   return (
     <header className="Header">
       <div className="Header-menu">
@@ -20,12 +20,15 @@ function Header() {
           <li><Link to="/browse/all">Browse</Link></li>
           <li><Link to="/freebies/all">Freebies</Link></li>
           <li><Link to="/premium/all">Premium</Link></li>
-          <li><Link to="/about">About</Link></li>
+          <li><Link to="/item">About</Link></li>
         </ul>
       </div>
       <div className="Header-interact">
         <CartButton/>
-        <MainButton text="Sign In"/>
+          {!isAuthenticated && (
+          <MainButton text="Sign In" onClick={() => loginWithRedirect({})}/>
+        )}
+        {isAuthenticated && <MainButton text="Log Out" onClick={() => logout()}/>}
       </div>
     </header>
   );

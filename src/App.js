@@ -4,15 +4,27 @@ import Carousel from './components/Carousel.js';
 import Title from './components/Title.js';
 import ItemList from './components/ItemList.js';
 import Item from './components/Item.js';
+import ItemBig from './components/ItemBig.js';
 import Footer from './components/Footer.js';
 import Filter from './components/Filter.js';
+
+import { useAuth0 } from "./react-auth0-spa.js";
+import ExternalApi from "./ExternalApi.js";
+
 import './App.css';
 
+/*
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
+} from "react-router-dom";
+*/
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
 } from "react-router-dom";
 
 function App() {
@@ -25,6 +37,13 @@ function App() {
     <Item key={5} category="minigames" title="sleekLoad 2 : Loading Screen" price="$2.99" priceData={2.99} url={require("./img/item.png")}/>
   ];
   // list.sort((a,b) => (a["props"]["priceData"] > b["props"]["priceData"]) ? 1 : ((b["props"]["priceData"] > a["props"]["priceData"]) ? -1 : 0));
+
+  const { loading } = useAuth0();
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Router>
       <div className="App">
@@ -44,6 +63,10 @@ function App() {
             <Title textAlign="center" title="Premium addons" text="150 Premium Onset Addons for your projects"/>
             <Filter url="premium"/>
             <ItemList list={list} sort="premium" url="premium"/>
+          </Route>
+          // Need to pass into the url the values
+          <Route path="/item">
+            <ItemBig/>
           </Route>
           <Route path="/about">
           </Route>

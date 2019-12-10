@@ -1,12 +1,9 @@
 import React from 'react';
-import Item from './Item.js';
 import '../App.css';
 
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 function ItemList(props) {
@@ -16,9 +13,9 @@ function ItemList(props) {
   let environments = [];
   let aProps = [];
   let all = [];
-  if (props.sort == "free") {
+  if (props.sort === "free") {
     props.list.forEach((element) => {
-      if (element["props"]["priceData"] == 0) {
+      if (element["props"]["priceData"] === 0) {
         all.push(element);
         switch (element["props"]["category"]) {
           case "roleplay":
@@ -35,11 +32,12 @@ function ItemList(props) {
           break;
           case "3d-props":
             aProps.push(element);
+          break;
           }
       }
   });
   }
-  else if (props.sort == "premium") {
+  else if (props.sort === "premium") {
     props.list.forEach((element) => {
       if (element["props"]["priceData"] !== 0) {
         all.push(element);
@@ -58,6 +56,7 @@ function ItemList(props) {
           break;
           case "3d-props":
             aProps.push(element);
+          break;
           }
       }
   });
@@ -80,6 +79,7 @@ function ItemList(props) {
         break;
         case "3d-props":
           aProps.push(element);
+        break;
         }
   });
 }

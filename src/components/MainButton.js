@@ -4,7 +4,7 @@ import '../App.css';
 function MainButton(props) {
   return (
     <div className="MainButton">
-      <span>{props.text}</span>
+      <button>{props.text}</button>
     </div>
   );
 }
