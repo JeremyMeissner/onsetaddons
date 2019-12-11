@@ -192,11 +192,11 @@ p {
   margin: 0px 42px 32px 0px;
   box-sizing: border-box;
 }
-.Item > img {
+.Item > * > img {
   border-radius: 12px;
   width: 100%;
 }
-.Item > div {
+.Item > * > div {
   width: 100%;
   display: flex;
   align-items: center;

@@ -1,45 +1,53 @@
 import React from 'react';
-import stars from '../img/stars.png';
-import item from '../img/item.png';
 import MainButton from './MainButton.js';
 import '../App.css';
+import data from '../data.json';
+import queryString from 'query-string';
 
-function Item(props) {
+export default class ItemBig extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {url: "./img/item.png", title: "Title: id Error", author: "Author: id Error", price: "Price: id Error", description: "Description: id Error", features: []};
+  }
+componentDidMount() {
+  const parsed = queryString.parse(window.location.search);
+  data.items.forEach(e => {
+    let featuresList = [];
+    if (e.id == parsed.id) {
+      import(`${e.url}`).then(image => {this.setState({url: image.default})})
+      this.setState({title: e.title, author: e.author, price: e.price, description: e.description});
+      e.features.forEach(e => {
+        featuresList.push(<li>{e}</li>);
+      });
+      this.setState({features: featuresList});
+    }
+});
+}
+render() {
+
   return (
     <div className="ItemBig">
       <main>
-        <h4>sleekLoad 2 : Loading Screen</h4>
-        <span>By Michael Jackson</span>
-        <img src={item} alt="Item"/>
+        <h4>{this.state.title}</h4>
+        <span>By {this.state.author}</span>
+        <img src={this.state.url} alt="Item"/>
         <div>
-          <h5>Browse the addons</h5>
-          <p>Banky comes with a total of 27 screen designs and 50+ symbols that will help you create a prototype for the banking application that you are working on and ready for you to use.
-          Made using neat layer formations, free to use Google Fonts and Vector graphic images. Banky comes in a sketch file format, you will easily combine it with other plugins.</p>
-          <h5>What product inside?</h5>
-          <p>Banky comes with a total of 27 screen designs and 50+ symbols that will help you create a prototype for the banking application that you are working on and ready for you to use.
-Made using neat layer formations, free to use Google Fonts and Vector graphic images. Banky comes in a sketch file format, you will easily combine it with other plugins.</p>
+        {this.state.description}
         </div>
       </main>
       <aside>
-        <div class="price">
-          <span>$5.99</span>
+        <div className="price">
+          <span>{this.state.price === 0 ? "FREE" : "$" + this.state.price}</span>
           <MainButton text="Add to Cart"/>
         </div>
-        <div class="features">
+        <div className="features">
           <span>Features</span>
           <ul>
-            <li>Header (Call to action)</li>
-            <li>Configurable Header Image</li>
-            <li>Community Features</li>
-            <li>Servers</li>
-            <li>Supports all source engine</li>
-            <li>Discord</li>
-            <li>Configurable navigation links</li>
+            {this.state.features}
           </ul>
         </div>
       </aside>
     </div>
   );
 }
-
-export default Item;
+}
