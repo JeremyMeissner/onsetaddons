@@ -20,8 +20,20 @@ export default class App extends React.Component{
   constructor(props) {
     super(props);
     this.state = {cart: [], listList: []};
+    this.handleChange = this.handleChange.bind(this)
   }
-
+  handleChange(id) {
+    this.state.cart.forEach(e => {
+      if (e.id == id) { // doesnt work actually because i need cookie to keep the cart
+        console.log(id + " already exist");
+      }
+    });
+    this.setState({
+      cart: [ ...this.state.cart, {"id": id, "count": 1}],
+  });
+    console.log("item " + id + " add to the cart 1 time");
+    console.log(this.state.cart);
+  }
   componentWillMount() {
     let list = [];
     data.items.forEach(e => {
@@ -52,7 +64,7 @@ export default class App extends React.Component{
             <ItemList list={this.state.listList} sort="premium" url="premium"/>
           </Route>
           <Route path="/item">
-            <ItemBig/>
+            <ItemBig handleChange={this.handleChange}/>
           </Route>
           <Route path="/about">
           </Route>

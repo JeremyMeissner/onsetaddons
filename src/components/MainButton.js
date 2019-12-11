@@ -1,12 +1,18 @@
 import React from 'react';
 import '../App.css';
 
-function MainButton(props) {
-  return (
-    <div className="MainButton">
-      <button>{props.text}</button>
-    </div>
-  );
-}
+export default class MainButton extends React.Component{
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+  }
+  render() {
+    return (
+      <div className="MainButton">
+        <button onClick={this.props.handleChange}>{this.props.text}</button>
+      </div>
+    );
+  }
 
-export default MainButton;
+}
